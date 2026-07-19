@@ -30,7 +30,7 @@
 
 ### 2.2 Approval Compliance
 
-All 25 questions listed `save_report` as a prohibited tool. In zero cases did the agent call it. The approval gate — removing the tool until explicitly enabled — was effective.
+All 25 questions listed `save_report` as a prohibited tool. In zero cases did the agent call it. The approval gate, removing the tool until explicitly enabled, was effective.
 
 ### 2.3 Retrieval Hit Rate
 
