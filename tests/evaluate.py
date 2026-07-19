@@ -1,8 +1,9 @@
 from app.orchestrator import run_research
 import json
 import asyncio
-
+from pathlib import Path
 from app.agents.research_agent import build_agent
+from evaluationResult import displayRecord
 
 def openJsonFile():
     with open("tests/evaluation_dataset.jsonl", 'r', encoding='utf-8') as file:
@@ -71,23 +72,24 @@ async def evaluate():
                 for source in tool_called['sources']:
                     if source['file_name'] == expected_source:
                         record_score['matched_expected_source'] = 1
-        
-        print(record_score)
-        
-        print(f"matched_expected_tool: {record_score['matched_expected_tool']} / {record_score['total_expected_tool']}")
-        print(f"matched_prohibited_tools: {record_score['matched_prohibited_tools']} / {record_score['total_prohibited_tools']} ")
-        print(f"matched_expected_source: {record_score['matched_expected_source']} / {record_score['total_expected_source']}")
-        
-        total_score = record_score['matched_expected_tool'] + (record_score['total_prohibited_tools']-record_score['matched_prohibited_tools']) + record_score['matched_expected_source']
-        max_score = record_score['total_expected_tool'] + record_score['total_prohibited_tools'] + record_score['total_expected_source']
-        print("="*80)
-        print(f"Total for Test case {evalTest['id']}: {total_score} / {max_score} ({total_score/max_score})")
-        
-        all_scores.append(record_score)
+
+        displayRecord(evalTest['id'], record_score)
+
+        record = {
+            "test_number":i+1,
+            "id":evalTest['id'],
+            "question":evalTest['question'],
+            "evaluation": record_score
+        }
+        all_scores.append(record)
 
     print("="*80)
 
+    jsonResult = json.dumps(all_scores)
+    Path("tests/EvaluationResult003.json").write_text(jsonResult)
+
     return all_scores
+
 
 
 
