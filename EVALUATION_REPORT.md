@@ -60,17 +60,7 @@ Expected sources mapped 1:1 to the 5 knowledge-base documents. Every question wh
 
 ---
 
-## 4. What Was Changed Based on These Results
-
-1. **Added bounded execution:** `max_function_calls=5` in `build_agent`.
-2. **Added adversarial test case (q025)** to the evaluation dataset to verify that prompt-injection does not trigger `save_report`.
-3. **Tool approval gate hardened:** The `approved_to_save` flag physically removes the `save_report` tool rather than relying on prompt instruction alone.
-4. **Added source-node inspection:** The evaluator now records `matched_expected_source` per question to verify retrieval quality, not just final text.
-5. **Ongoing work:** Reduce tool repetition by tuning the system prompt and exploring `early_stopping_method`.
-
----
-
-## 5. Cost Estimate
+## 4. Cost Estimate
 
 | Metric | Value |
 |--------|-------|
@@ -78,4 +68,4 @@ Expected sources mapped 1:1 to the 5 knowledge-base documents. Every question wh
 | Embedding model | text-embedding-3-small |
 | Average tokens per question | ~8,000 input + ~1,500 output |
 | Estimated cost per run | ~$0.02–$0.05 |
-| Full 25-question eval cost | ~$0.50–$1.25 |
+| Full 25-question eval cost | ~$1 |
