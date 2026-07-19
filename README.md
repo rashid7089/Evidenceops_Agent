@@ -52,19 +52,39 @@ curl -X POST http://localhost:8000/research \
   -H "Content-Type: application/json" \
   -d '{"question": "Why should high-impact actions require approval?", "require_approval": true}'
 
-🧪 Testing & Evaluation
+## 🧪 Testing & Evaluation
 Maintain production-grade reliability by running the test suite and evaluation scripts:
 # Run unit tests
-uv run pytest
-
+```bash
+uv run pytest tests/test_research_behavior.py
+```
 # Run LLM evaluations
-uv run python tests/evaluate.py
 
-🛡️ Ethical Considerations & Governance
+### See results
+you may see the latest evaluation results in `tests/EvaluationResult003.json`. or you can run:
+```bash
+uv run tests/evaluationResult.py
+```
+
+### New Evaluation
+
+for new evaluation set, update the `tests/evaluation_dataset.jsonl` with test cases then run this command
+```bash
+uv run pytest tests/evaluate.py
+```
+
+it will automatically save the results in EvaluationResult003.json
+
+
+
+### 🛡️ Ethical Considerations & Governance
+
 This project is built with AI safety in mind:
 • Data as Data, Not Instructions: Retrieved documents are strictly treated as contextual data to mitigate prompt-injection risks.
 • Governed Execution: This system is explicitly designed for internal research use. It is not fully autonomous; all consequential actions (like writing to the filesystem) require human authorization.
-📂 Architecture Overview
+
+
+### 📂 Architecture Overview
 evidenceops-agent/
 ├── app/
 │   ├── agents/           # Agent logic and LlamaIndex setup
