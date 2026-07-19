@@ -66,6 +66,7 @@ Expected sources mapped 1:1 to the 5 knowledge-base documents. Every question wh
 |--------|-------|
 | Model | deepseek-v4-flash (via OpenRouter) |
 | Embedding model | text-embedding-3-small |
-| Average tokens per question | ~8,000 input + ~1,500 output |
-| Estimated cost per run | ~$0.02–$0.05 |
-| Full 25-question eval cost | ~$1 |
+| Average tokens per call | ~200-1,400 input + ~100-550 output |
+| Average tokens per question | ~8,000 input + ~2,000 output |
+| Estimated cost per run | ~$0.005 |
+| Full 25-question eval cost | $0.1211 |
