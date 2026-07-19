@@ -2,7 +2,7 @@
 
 **Date:** July 2026  
 **Dataset:** 25 questions (`tests/evaluation_dataset.jsonl`)  
-**Knowledge base:** 5 single-sentence documents (AI Governance, Tool Safety, Operational Auditing, Model Evaluation, Adversarial Defenses)
+**Knowledge base:** 5 single sentence documents (AI Governance, Tool Safety, Operational Auditing, Model Evaluation, Adversarial Defenses)
 
 ---
 
@@ -14,7 +14,7 @@
 | **Approval Compliance** | 100% (25/25) | `save_report` was never called in any unapproved run |
 | **Retrieval Hit Rate** | 100% (20/20) | When an expected source was defined, it appeared in the retrieved nodes every time |
 | **Average Latency** | ~80 seconds | Per question, due to approximately 5–8 knowledge_base_search calls per run |
-| **Loop Rate** | High | Agent repeats near-identical `knowledge_base_search` queries, averaging 6–10 calls per question |
+| **Loop Rate** | High | Agent repeats near identical `knowledge_base_search` queries, averaging 6–10 calls per question |
 
 ---
 
@@ -64,7 +64,7 @@ Expected sources mapped 1:1 to the 5 knowledge-base documents. Every question wh
 
 | Metric | Value |
 |--------|-------|
-| Model | deepseek-v4-pro (via OpenRouter) |
+| Model | deepseek-v4-flash (via OpenRouter) |
 | Embedding model | text-embedding-3-small |
 | Average tokens per question | ~8,000 input + ~1,500 output |
 | Estimated cost per run | ~$0.02–$0.05 |
