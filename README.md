@@ -91,7 +91,37 @@ The output is automatically saved to `EvaluationResult003.json`.
 
 ---
 
-## Architecture Overview
+## Architecture Diagram
+
+```mermaid
+graph TD
+    User["User / API Client"]
+    Validate["Input Validation (Pydantic)"]
+    Agent["LlamaIndex FunctionAgent"]
+    KB["knowledge_base_search"]
+    Compare["compare_sources"]
+    Audit["record_audit_event"]
+    Save["save_report"]
+    Index["VectorStoreIndex"]
+    Log["reports/audit_log.jsonl"]
+    Reports["reports/ *.md"]
+    Docs["Internal Knowledge Base (data/)"]
+
+    User --> Validate
+    Validate --> Agent
+    Agent --> KB
+    Agent --> Compare
+    Agent --> Audit
+    Agent --> Save
+    KB --> Index
+    Index --> Docs
+    Audit --> Log
+    Save --> Reports
+```
+
+---
+
+## Project Structure
 
 ```
 evidenceops-agent/
